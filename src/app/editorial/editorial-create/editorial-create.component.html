@@ -1,0 +1,66 @@
+<div class="container mt-4" style=" background: transparent;
+    border: gray;
+    border-style: solid;">
+  <h2 class="text-center">Create Editorial</h2>
+  <!--
+  <h4 class="text-md-left">Necesito completar el formulario de creación:
+  </h4>
+  <h4 class="text-md-left">
+    - Añade el campo de Fecha de creación (datepicker).
+  </h4>
+  <h4 class="text-md-left">
+    - Añade el email del director (valida que sea email correcto)
+  </h4>
+  <h4 class="text-md-left">
+    - Los dos campos son obligatorios</h4>
+    -->
+  <form [formGroup]="editorialForm" (ngSubmit)="createEditorial(editorialForm.value)">
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="name"> Editorial Name </label>
+      <input novalidate id="name" class="form-control" formControlName="name" placeholder="Editorial Name" />
+    </div>
+    <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+        editorialForm.get('name')?.hasError('required') &&
+        editorialForm.get('name')?.touched
+      ">
+      Name required
+    </div>
+
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="fecha"> Fecha de creacion </label>
+      <input novalidate id="fecha" class="form-control" type="date" formControlName="fecha" placeholder="Fecha de creacion" />
+    </div>
+    <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+        editorialForm.get('fecha')?.hasError('required') &&
+        editorialForm.get('fecha')?.touched
+      ">
+      Fecha required
+    </div>
+
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="email"> Email del director </label>
+      <input novalidate id="email" class="form-control" type="text" formControlName="email" placeholder="Email del director" />
+    </div>
+    <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+        editorialForm.get('email')?.hasError('required') &&
+        editorialForm.get('email')?.touched
+      ">
+      Email required
+    </div>
+    <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+        editorialForm.get('email')?.hasError('email') &&
+        editorialForm.get('email')?.touched
+      ">
+      Email is not valid
+    </div>
+
+    <div class="text-center">
+      <button id="submit" type="submit" class="btn btn-primary btn-lg" [disabled]="editorialForm.invalid">
+        Create
+      </button>
+      <button type="button" class="btn btn-danger ml-3 btn-lg" (click)="cancelCreation()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
